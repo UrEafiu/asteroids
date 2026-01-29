@@ -7,6 +7,9 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
 
+    clock = pygame.time.Clock()
+    dt = 0
+
     while True:
         log_state()
 
@@ -15,6 +18,11 @@ def main():
 
         screen.fill("black")
 
+        # To add 60 fps limitation for screen refresh.
+        clock.tick(60)
+        dt = clock.get_time() / 1000
+
+        # To refresh.
         pygame.display.flip()
 
         # To make the pygame window exit when you click exit.
