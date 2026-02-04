@@ -1,6 +1,8 @@
 import pygame
 from constants import *
 from logger import log_state
+from player import Player
+from circleshape import CircleShape
 
 def main():
     pygame.init()
@@ -10,11 +12,17 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    # Instantiate "Player" object.
+    new_player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
+    # Game loop.
     while True:
         log_state()
 
+        # To make the pygame window exit when you click exit.
         for event in pygame.event.get():
-            pass
+            if event.type == pygame.QUIT:
+                return
 
         screen.fill("black")
 
@@ -22,13 +30,11 @@ def main():
         clock.tick(60)
         dt = clock.get_time() / 1000
 
+        # Draw player
+        new_player.draw(screen)
+
         # To refresh.
         pygame.display.flip()
-
-        # To make the pygame window exit when you click exit.
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return
 
 if __name__ == "__main__":
     main()
