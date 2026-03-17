@@ -20,3 +20,12 @@ class CircleShape(pygame.sprite.Sprite):
     def update(self, dt):
         # must override
         pass
+
+    # This checks whether elements are colliding with each other. All our elements are CircleShape (even though Player looks like a triangle) so it works.
+    def collides_with(self, other):
+        distance = self.position.distance_to(other.position)
+        r1 = self.radius
+        r2 = other.radius
+        if r1+r2 >= distance:
+            return True
+        return False
