@@ -60,6 +60,12 @@ def main():
                 print("Game over!")
                 sys.exit()
 
+            for bullet in shots:
+                if asteroid.collides_with(bullet):
+                    log_event("asteroid_shot")
+                    asteroid.kill()
+                    bullet.kill()
+
         # Draw elements in the drawable group.
         for element in drawable:
             element.draw(screen)
